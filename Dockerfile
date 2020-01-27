@@ -4,4 +4,4 @@ COPY pkg/ /
 
 EXPOSE 23
 
-CMD [ "/bin/sh" ]
+CMD [ "/bin/bash" ]
