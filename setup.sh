@@ -2,4 +2,4 @@
 
 set -x
 
-chmod a+x /mbbsemu/MBBSEmu
+chmod a+x ./MBBSEmu
