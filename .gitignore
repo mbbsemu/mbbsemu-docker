@@ -2,3 +2,6 @@ pkg/mbbsemu*
 
 pkg/modules/*
 !pkg/modules/.gitkeep
+
+data/*
+!data/.gitkeep
