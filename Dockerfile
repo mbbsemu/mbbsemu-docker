@@ -11,5 +11,6 @@ RUN /mbbsemu/setup.sh
 COPY run.sh /
 
 EXPOSE 23
+VOLUME /data
 
 CMD bash
