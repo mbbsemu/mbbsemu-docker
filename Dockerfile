@@ -12,4 +12,4 @@ COPY run.sh /
 
 EXPOSE 23
 
-CMD [ "/bin/bash" ]
+CMD bash
