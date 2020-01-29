@@ -14,4 +14,4 @@ RUN ./setup.sh
 EXPOSE 23
 VOLUME /data
 
-CMD bash
+ENTRYPOINT [ "./run.sh" ]
