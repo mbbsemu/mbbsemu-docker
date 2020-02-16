@@ -98,7 +98,8 @@ The command should look something like the below. Fill in your prefered host por
 docker run --rm \
            -p [host_port]:23 \
            -v `pwd`/data:/data \
-           -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro \ mbbsemu [module_name]
+           -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro \
+           mbbsemu [module_name]
 ```
 
 #### Running a shell for debugging purposes
