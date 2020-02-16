@@ -2,13 +2,14 @@ FROM mcr.microsoft.com/dotnet/core/runtime:3.1.1-buster-slim
 
 LABEL maintainer="fletcherm@gmail.com"
 
-ENV INSTALL_PATH /mbbsemu/
+ENV EMULATOR_PATH /mbbsemu/
+ENV BBS_PATH /bbsv6/
 
-COPY pkg/modules /bbsv6/
-COPY pkg/mbbsemu-linux-x64-* ${INSTALL_PATH}
-COPY run.sh setup.sh ${INSTALL_PATH}
+COPY pkg/modules ${BBS_PATH}
+COPY pkg/mbbsemu-linux-x64-* ${EMULATOR_PATH}
+COPY run.sh setup.sh ${EMULATOR_PATH}
 
-WORKDIR ${INSTALL_PATH}
+WORKDIR ${EMULATOR_PATH}
 RUN ./setup.sh
 
 EXPOSE 23
