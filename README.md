@@ -1,7 +1,5 @@
 # MBBSEmu Docker image
 
-A Docker image for running [MBBSEmu](https://mbbsemu.com).
-
 ## Motivation
 
 Truth be told, as of 2020-02-16 it's probably easiest to run and tinker with the emulator locally,
