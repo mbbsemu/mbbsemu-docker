@@ -1,6 +1,6 @@
 # MBBSEmu Docker image
 
-A Docker image for running MBBSEmu.
+A Docker image for running [MBBSEmu](https://mbbsemu.com).
 
 ## Motivation
 
