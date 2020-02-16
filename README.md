@@ -4,12 +4,12 @@ A Docker image for running MBBSEmu.
 
 ## Motivation
 
-Truth be told, as of 2020-01-30 it's probably easiest to run and tinker with the emulator locally,
+Truth be told, as of 2020-02-16 it's probably easiest to run and tinker with the emulator locally,
 
 That said, I made this image to:
 
 * Make it easier to run the emulator on my computer
-* Prove out running the emulator in a Linux container. In the long run, I imagine most sysdamins will want to run this in a container or a virtual machine.
+* Prove out running the emulator in a Linux container. In the long run, I imagine many sysdamins will want to run this in a container or a virtual machine.
 * Get all of these learnings into version control
 * Make all of these commands and learnings executable and automated
 
@@ -22,11 +22,11 @@ I expect Linux will worth without trouble. Windows is the wildcard.
 ## Prerequisites
 
 * Docker
-  * I'm using Docker Desktop for Mac 2.2.0.0 as of 2020-01-30
+  * I'm using Docker Desktop for Mac 2.2.0.3 as of 2020-02-16
 * An unzipped MBBSEmu package
-  * I'm using private alpha 2.2 as of 2020-01-30
+  * I'm using private alpha 3 from 2020-02-03
 * Unzipped MajorBBS modules
-  * I've only used `GWWARROW` as of 2020-01-30
+  * I've only used `GWWARROW` as of 2020-02-16
 
 ## Quick start
 
@@ -58,7 +58,7 @@ Your `pkg` directory should look something like this once everything is in place
 
 ```sh
 pkg
-├── mbbsemu-linux-x64-012720_2
+├── mbbsemu-linux-x64-020320
 │   └── MBBSEmu
 └── modules
     ├── GWWARROW
@@ -120,7 +120,8 @@ docker run --rm \
 
 ## Todos
 
-- [ ] See if a generic `docker-compose.yml` can be created to ease running this beast.
-- [ ] Figure out if there is a way to use `ENTRYPOINT` or `CMD` directives to make it easy to run a module directly _or_ run a shell to debug.
-- [ ] Test this setup with a module that needed to be installed first.
-- [ ] Do MBBS modules that save data dump all their data files in the same directory as the bbs exectuables themselves? I believe so. Test if there is a way to dump the static bbs files during build time, but volume map the data files at runtime into the same directory.
+* [ ] Identify a slimmer base image to build from. (I chose this one because I know the app is being developed on .net, but I suspect something smaller can be used for runtime only)
+* [ ] See if a generic `docker-compose.yml` can be created to ease running this beast.
+* [ ] Figure out if there is a way to use `ENTRYPOINT` or `CMD` directives to make it easy to run a module directly _or_ run a shell to debug.
+* [ ] Test this setup with a module that needed to be installed first.
+* [ ] Do MBBS modules that save data dump all their data files in the same directory as the bbs exectuables themselves? I believe so. Test if there is a way to dump the static bbs files during build time, but volume map the data files at runtime into the same directory.
