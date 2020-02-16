@@ -111,6 +111,7 @@ Sample command:
 
 ```sh
 docker run --rm \
+           -it \
            -p 2323:23 \
            -v `pwd`/data:/data \
            -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro \
