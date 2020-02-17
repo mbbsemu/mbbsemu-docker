@@ -36,7 +36,7 @@ I expect Linux will worth without trouble. Windows is the wildcard.
   * Many modules require a separate installation process. I have not tried that yet since `GWWARROW` does not.
 * Ensure you are currently in the root directory of the repository.
 * `docker build -t mbbsemu .`
-* `docker run --rm -p [host_port]:23 -v `pwd`/data:/data -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro mbbsemu [module_name]`
+* `docker run --rm -p [host_port]:23 -v $PWD/data:/data -v $PWD/config/appsettings.json:/mbbsemu/appsettings.json:ro mbbsemu [module_name]`
   * Fill in `[module_name]` with the module you want to run, e.g. `GWWARROW`
   * Fill in `[host_port]` with the port you want opened on the host, e.g. `2323`
 
