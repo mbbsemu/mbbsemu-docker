@@ -1,0 +1,2 @@
+alias build="docker build -t mbbsemu . && docker image prune -f"
+alias run="docker run --rm -p 2323:23 -v $PWD/data:/data -v $PWD/config/appsettings.json:/mbbsemu/appsettings.json:ro mbbsemu"
