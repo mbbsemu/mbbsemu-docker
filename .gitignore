@@ -1,3 +1,5 @@
+pkg/archive
+
 pkg/mbbsemu*
 
 pkg/modules/*
