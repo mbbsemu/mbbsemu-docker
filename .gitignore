@@ -2,8 +2,8 @@ pkg/archive
 
 pkg/mbbsemu*
 
-pkg/modules/*
-!pkg/modules/.gitkeep
+pkg/post-install-modules/*
+!pkg/post-install-modules/.gitkeep
 
 data/*
 !data/.gitkeep
