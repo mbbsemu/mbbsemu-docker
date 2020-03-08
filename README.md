@@ -51,9 +51,12 @@ MBBS modules should be in the `modules` subdirectory. The files should have both
 
 My understanding is that the installers can be run under Dosbox or a DOS virtual machine.
 
-Your `pkg` directory should look something like this once everything is in place:
+Your `modules` and `pkg` directories should look something like this once everything is in place:
 
 ```sh
+modules
+  ├── GWWARROW
+  └── WCCMMUD
 pkg
 ├── mbbsemu-linux-x64-020320
 │   └── MBBSEmu
