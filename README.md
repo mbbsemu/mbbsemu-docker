@@ -116,9 +116,9 @@ docker run --rm \
 
 ## Todos
 
+* [ ] Remove `modules.json` from source control. Instead, provide an example and have the end user configure it for their own needs.
 * [x] Volume map the modules directory -- modules are simply too messy to be copied in with one of two data files mapped. They drop stuff all over the place :(
 * [x] Do MBBS modules that save data dump all their data files in the same directory as the bbs exectuables themselves? I believe so. Test if there is a way to dump the static bbs files during build time, but volume map the data files at runtime into the same directory. Need one or two modules to test this with first.
 * [ ] Identify a slimmer base image to build from. (I chose this one because I know the app is being developed on .net, but I suspect something smaller can be used for runtime only)
 * [x] See if a generic `docker-compose.yml` can be created to ease running this beast.
 * [ ] Figure out if there is a way to use `ENTRYPOINT` or `CMD` directives to make it easy to run a module directly _or_ run a shell to debug.
-* [ ] Test this setup with a module that needed to be installed first.
