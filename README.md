@@ -32,11 +32,12 @@ I expect Linux will worth without trouble. Windows is the wildcard.
 * Unpack MBBSEmu into the a subdirectory of the `pkg` directory
   * It should be named something like `mbbs-linux-x64-*`
   * This directory will not be committed to source control.
-* Put unzipped and installed MajorBBS modules into subdirectories under `pkg/modules`
+* Put unzipped and installed MajorBBS modules into subdirectories under `modules` directory
   * Many modules require a separate installation process. I have not tried that yet since `GWWARROW` does not.
+  * Hint: Put pristine modules that have only gone through the installation process into `pkg/post-install-modules`. This helps keep a pristine copy around in case the runtime modules get messed up during testing.
 * Ensure you are currently in the root directory of the repository.
 * `docker build -t mbbsemu .`
-* `docker run --rm -p [host_port]:23 -v $PWD/data:/data -v $PWD/config/appsettings.json:/mbbsemu/appsettings.json:ro mbbsemu [module_name]`
+* `docker run --rm -p [host_port]:23 -v $PWD/modules:/modules-v $PWD/data:/data -v $PWD/config/appsettings.json:/mbbsemu/appsettings.json:ro mbbsemu [module_name]`
   * Fill in `[module_name]` with the module you want to run, e.g. `GWWARROW`
   * Fill in `[host_port]` with the port you want opened on the host, e.g. `2323`
 
@@ -48,7 +49,7 @@ External (meaning not checked into source control) package all live in `pkg`. `p
 
 MBBSEmu itself should be located in a directory in `pkg`. It will be copied into the Docker image during build time.
 
-MBBS modules should be in the `pkg/modules` subdirectory. The files should have both been unzipped and installed (if necessary). So far I've only tested `GWWARROW`, which does not require installation
+MBBS modules should be in the `modules` subdirectory. The files should have both been unzipped and installed (if necessary). So far I've only tested `GWWARROW`, which does not require installation
 
 My understanding is that the installers can be run under Dosbox or a DOS virtual machine.
 
@@ -58,7 +59,7 @@ Your `pkg` directory should look something like this once everything is in place
 pkg
 ├── mbbsemu-linux-x64-020320
 │   └── MBBSEmu
-└── modules
+└── post-install-modules
     ├── GWWARROW
     └── WCCMMUD
 ```
@@ -66,6 +67,8 @@ pkg
 ### MBBSEmu configuration and database
 
 MBBSEmu's database directory should be volume mapped to the `data` directory.
+
+Modules should be volume mapped to the `modules` directory.
 
 The MBBSEmu comes with a sample configuration file but it is ignored.
 
@@ -95,6 +98,7 @@ The command should look something like the below. Fill in your prefered host por
 ```sh
 docker run --rm \
            -p [host_port]:23 \
+           -v `pwd`/modules:/modules \
            -v `pwd`/data:/data \
            -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro \
            mbbsemu [module_name]
@@ -112,6 +116,7 @@ Sample command:
 docker run --rm \
            -it \
            -p 2323:23 \
+           -v `pwd`/modules:/modules \
            -v `pwd`/data:/data \
            -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro \
            --entrypoint bash \
@@ -120,7 +125,7 @@ docker run --rm \
 
 ## Todos
 
-* [ ] Volume map the modules directory -- modules are simply too messy to be copied in with one of two data files mapped. They drop stuff all over the place :(
+* [x] Volume map the modules directory -- modules are simply too messy to be copied in with one of two data files mapped. They drop stuff all over the place :(
 * [x] Do MBBS modules that save data dump all their data files in the same directory as the bbs exectuables themselves? I believe so. Test if there is a way to dump the static bbs files during build time, but volume map the data files at runtime into the same directory. Need one or two modules to test this with first.
 * [ ] Identify a slimmer base image to build from. (I chose this one because I know the app is being developed on .net, but I suspect something smaller can be used for runtime only)
 * [ ] See if a generic `docker-compose.yml` can be created to ease running this beast.
