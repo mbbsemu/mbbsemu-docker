@@ -22,9 +22,9 @@ I expect Linux will worth without trouble. Windows is the wildcard.
 * Docker
   * I'm using Docker Desktop for Mac 2.2.0.3 as of 2020-02-16
 * An unzipped MBBSEmu package
-  * I'm using private alpha 3 from 2020-02-03
+  * I'm using private alpha 6
 * Unzipped MajorBBS modules
-  * I've only used `GWWARROW` as of 2020-02-16
+  * I've only used `GWWARROW` and `RTSLORD` as of 2020-03-08
 
 ## Quick start
 
@@ -36,10 +36,8 @@ I expect Linux will worth without trouble. Windows is the wildcard.
   * Many modules require a separate installation process. I have not tried that yet since `GWWARROW` does not.
   * Hint: Put pristine modules that have only gone through the installation process into `pkg/post-install-modules`. This helps keep a pristine copy around in case the runtime modules get messed up during testing.
 * Ensure you are currently in the root directory of the repository.
-* `docker build -t mbbsemu .`
-* `docker run --rm -p [host_port]:23 -v $PWD/modules:/modules-v $PWD/data:/data -v $PWD/config/appsettings.json:/mbbsemu/appsettings.json:ro mbbsemu [module_name]`
-  * Fill in `[module_name]` with the module you want to run, e.g. `GWWARROW`
-  * Fill in `[host_port]` with the port you want opened on the host, e.g. `2323`
+* `docker-compose up`
+  * This with run MBBSEmu on port 2323 of the host and the modules specified in `config/modules.json`
 
 ## In-depth setup
 
@@ -76,33 +74,22 @@ Instead, the file in `config/appsettings.json` is mapped as a read-only volume i
 
 If you need to make configuration file changes, then `config/appsettings.json` is your friend. Restart the container after your changes and they should be applied.
 
+Modules to be run by MBBSEmu are specified in `config/modules.json`.
+
 ### Building the image
 
-Build the image with a minimal Docker build command à la `docker build -t mbbsemu .`
+Build the image `docker-compose build` or with a minimal Docker build command à la `docker build -t mbbsemu .`
 
-Changes to the MBBSEmu package or MBBS modules will require a rebuild of the image. Changes to `config/appsettings.json` only require a container restart.
+Changes to the MBBSEmu package or MBBS modules will require a rebuild of the image. Changes to `config/appsettings.json` or `config/modules.json` only require a container restart.
 
 ### Running a container
 
 Running the container requires:
   
 * a port mapping of port 23 in the container to a host port.
-* a volume mapping of the configuration file.
-* a volume mapping to the database directory.
-* a specific module name to run.
+* volume mappings to the configuration files, database directory, and modules directory
 
-The command should look something like the below. Fill in your prefered host port and module name.
-
-(Assuming you are running this command in the root of the repository.)
-
-```sh
-docker run --rm \
-           -p [host_port]:23 \
-           -v `pwd`/modules:/modules \
-           -v `pwd`/data:/data \
-           -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro \
-           mbbsemu [module_name]
-```
+I recommend using `docker-compose up` with the included `docker-compose.yml`.
 
 #### Running a shell for debugging purposes
 
@@ -119,6 +106,7 @@ docker run --rm \
            -v `pwd`/modules:/modules \
            -v `pwd`/data:/data \
            -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro \
+           -v `pwd`/config:/config:ro
            --entrypoint bash \
            mbbsemu
 ```
@@ -128,6 +116,6 @@ docker run --rm \
 * [x] Volume map the modules directory -- modules are simply too messy to be copied in with one of two data files mapped. They drop stuff all over the place :(
 * [x] Do MBBS modules that save data dump all their data files in the same directory as the bbs exectuables themselves? I believe so. Test if there is a way to dump the static bbs files during build time, but volume map the data files at runtime into the same directory. Need one or two modules to test this with first.
 * [ ] Identify a slimmer base image to build from. (I chose this one because I know the app is being developed on .net, but I suspect something smaller can be used for runtime only)
-* [ ] See if a generic `docker-compose.yml` can be created to ease running this beast.
+* [x] See if a generic `docker-compose.yml` can be created to ease running this beast.
 * [ ] Figure out if there is a way to use `ENTRYPOINT` or `CMD` directives to make it easy to run a module directly _or_ run a shell to debug.
 * [ ] Test this setup with a module that needed to be installed first.

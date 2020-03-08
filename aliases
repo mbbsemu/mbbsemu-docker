@@ -1,2 +1,2 @@
-alias build="docker build -t mbbsemu . && docker image prune -f"
-alias run="docker run --rm -p 2323:23 -v $PWD/modules:/modules -v $PWD/data:/data -v $PWD/config/appsettings.json:/mbbsemu/appsettings.json:ro mbbsemu"
+alias build="docker-compose build && docker image prune -f"
+alias run="docker-compose up"

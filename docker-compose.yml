@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  mbbsemu:
+    build: .
+    ports:
+      - "2323:23"
+    volumes:
+      - ./config:/config:ro
+      - ./config/appsettings.json:/mbbsemu/appsettings.json:ro
+      - ./data:/data
+      - ./modules:/modules

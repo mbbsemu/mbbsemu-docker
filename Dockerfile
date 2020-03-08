@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet/core/runtime:3.1.1-buster-slim
 
 LABEL maintainer="fletcherm@gmail.com"
 
+ENV CONFIG_PATH /config
 ENV DATA_PATH /data
 ENV EMULATOR_PATH /mbbsemu
 ENV MODULES_PATH /modules
@@ -14,6 +15,7 @@ WORKDIR ${EMULATOR_PATH}
 RUN ./setup.sh
 
 EXPOSE 23
+VOLUME ${CONFIG_PATH}
 VOLUME ${DATA_PATH}
 VOLUME ${MODULES_PATH}
 
