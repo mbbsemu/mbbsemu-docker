@@ -7,3 +7,6 @@ pkg/post-install-modules/*
 
 data/*
 !data/.gitkeep
+
+modules/*
+!modules/.gitkeep
