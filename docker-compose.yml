@@ -9,4 +9,4 @@ services:
       - ./config:/config:ro
       - ./config/appsettings.json:/mbbsemu/appsettings.json:ro
       - ./data:/data
-      - ./modules:/modules
+      - ./modules:/modules:delegated
