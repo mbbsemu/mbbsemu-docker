@@ -5,6 +5,10 @@
       "Path": "/modules/GWWARROW"
     },
     {
+      "Identifier": "HVSXROAD",
+      "Path": "/modules/HVSXROAD"
+    },
+    {
       "Identifier": "RTSLORD",
       "Path": "/modules/RTSLORD"
     }
