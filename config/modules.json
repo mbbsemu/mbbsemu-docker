@@ -11,6 +11,10 @@
     {
       "Identifier": "RTSLORD",
       "Path": "/modules/RTSLORD"
+    },
+    {
+      "Identifier": "TSGARN",
+      "Path": "/modules/ta56dg"
     }
   ]
 }
