@@ -4,7 +4,7 @@ services:
   mbbsemu:
     build: .
     ports:
-      - "2323:23"
+      - "2323:2323"
     volumes:
       - ./config:/config:ro
       - ./config/appsettings.json:/mbbsemu/appsettings.json:ro

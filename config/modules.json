@@ -15,6 +15,10 @@
     {
       "Identifier": "TSGARN",
       "Path": "/modules/ta56dg"
+    },
+    {
+      "Identifier": "WCCMMUD",
+      "Path": "/modules/WCCMMUD"
     }
   ]
 }
