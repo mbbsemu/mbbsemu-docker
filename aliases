@@ -1,2 +1,4 @@
 alias build="docker-compose build && docker image prune -f"
 alias run="docker-compose up"
+alias update-mbbsemu="mv pkg/mbbsemu-* pkg/archive/old-mbbsemu-packages && mv ~/Desktop/mbbsemu-* pkg" # almost certainly works on Matt's laptop only
+
