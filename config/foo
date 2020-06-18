@@ -1,0 +1,12 @@
+{
+  "BBS.Title": "MBBSEmu",
+  "GSBL.Activation": "55067840",
+  "Module.DoLoginRoutine": "False",
+  "Telnet.Enabled":  "True",
+  "Telnet.Port": "2323",
+  "Rlogin.Enabled": "False",
+  "Rlogin.Port": "513",
+  "Rlogin.RemoteIP": "127.0.0.1",
+  "Rlogin.PortPerModule": "True",
+  "Database.File": "/data/mbbsemu.db"
+}
