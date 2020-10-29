@@ -1,22 +1,33 @@
-FROM mcr.microsoft.com/dotnet/core/runtime:3.1.1-buster-slim
+# Based on the LinuxServer.io DuckDNS image
+# https://github.com/linuxserver/docker-duckdns
 
-LABEL maintainer="fletcherm@gmail.com"
+FROM lsiobase/alpine:3.12
 
-ENV CONFIG_PATH /config
-ENV DATA_PATH /data
-ENV EMULATOR_PATH /mbbsemu
-ENV MODULES_PATH /modules
+ARG BUILD_DATE
+ARG VERSION
+LABEL build_version="MBBSEmu version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="fletcherm"
 
-COPY pkg/mbbsemu-linux-x64-* ${EMULATOR_PATH}
-COPY run.sh ${EMULATOR_PATH}
-COPY setup.sh ${EMULATOR_PATH}
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
-WORKDIR ${EMULATOR_PATH}
-RUN ./setup.sh
+COPY root/ /
+COPY pkg/mbbsemu-linux-x64-* /app
 
-EXPOSE 2323
-VOLUME ${CONFIG_PATH}
-VOLUME ${DATA_PATH}
-VOLUME ${MODULES_PATH}
+# ENV CONFIG_PATH /config
+# ENV DATA_PATH /data
+# ENV EMULATOR_PATH /mbbsemu
+# ENV MODULES_PATH /modules
 
-ENTRYPOINT [ "./run.sh" ]
+# COPY pkg/mbbsemu-linux-x64-* ${EMULATOR_PATH}
+# COPY run.sh ${EMULATOR_PATH}
+# COPY setup.sh ${EMULATOR_PATH}
+
+# WORKDIR ${EMULATOR_PATH}
+# RUN ./setup.sh
+
+# EXPOSE 2323
+# VOLUME ${CONFIG_PATH}
+# VOLUME ${DATA_PATH}
+# VOLUME ${MODULES_PATH}
+
+# ENTRYPOINT [ "./run.sh" ]
