@@ -1,0 +1,8 @@
+#!/usr/bin/with-contenv bash
+# Based on the simple config init script from [duckdns image](https://github.com/linuxserver/docker-duckdns/blob/master/root/etc/cont-init.d/40-config)
+
+chown -R abc:abc \
+	/app \
+	/config
+
+chmod a+x /app/MBBSEmu

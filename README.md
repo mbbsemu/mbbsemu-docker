@@ -1,5 +1,11 @@
 # MBBSEmu Docker image
 
+## Todos
+
+- [] Figure out how to get the VERSION arg passed in / configured in the Dockerfile - maybe download directly from mbbsemu?
+- [] Go through files changed on the linuxserver.io branch; remove commented out reference code from the old implementation
+- [] Update this README to account for linuxserver changeover
+
 ## Motivation
 
 Truth be told, as of 2020-02-16 it's probably easiest to run and tinker with the emulator locally,
