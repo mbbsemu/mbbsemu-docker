@@ -6,3 +6,5 @@ chown -R abc:abc \
 	/config
 
 chmod a+x /app/MBBSEmu
+
+exec s6-setuidgid abc /app/MBBSEmu
