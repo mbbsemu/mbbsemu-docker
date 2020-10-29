@@ -11,7 +11,7 @@ LABEL maintainer="fletcherm"
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 
 COPY root/ /
-COPY pkg/mbbsemu-linux-x64-* /app
+COPY pkg/mbbsemu-linux-x64-*/MBBSEmu /app
 
 # ENV CONFIG_PATH /config
 # ENV DATA_PATH /data
