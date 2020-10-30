@@ -1,0 +1,13 @@
+#!/bin/sh
+
+build_date=`date "+%Y-%m-%d"`
+version=`ls -d pkg/mbbsemu-linux-x64-* | sed "s/pkg\/mbbsemu-linux-x64-/ /"`
+
+# Strip the newline off version - https://stackoverflow.com/questions/12524308/bash-strip-trailing-linebreak-from-output
+version=$(printf $version)
+
+docker build \
+  --build-arg BUILD_DATE=$build_date \
+  --build-arg VERSION=$version \
+  -t mbbsemu . && \
+docker image prune -f

@@ -1,6 +1,6 @@
 # Based on the LinuxServer.io DuckDNS image https://github.com/linuxserver/docker-duckdns
-# Using Ubuntu instead of Alpine, since MBBSEmu is not Alpine compatible.
 
+# Using Ubuntu instead of Alpine, since MBBSEmu is not Alpine compatible.
 FROM lsiobase/ubuntu:bionic
 
 ARG BUILD_DATE

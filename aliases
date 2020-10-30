@@ -1,5 +1,3 @@
-alias build='docker build --build-arg BUILD_DATE=`date "+%Y-%m-%d"` -t mbbsemu . && docker image prune -f'
-
 alias run="docker-compose up"
 alias runit="docker run -it --rm -p 2323:23 -v `pwd`/config:/config:ro -v `pwd`/config/appsettings.json:/mbbsemu/appsettings.json:ro -v `pwd`/modules:/modules:delegated -v `pwd`/data:/data --entrypoint bash mbbsemu"
 alias connect="docker container exec -it mbbsemu-docker_mbbsemu_1 /bin/bash"
