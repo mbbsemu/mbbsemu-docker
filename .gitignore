@@ -6,4 +6,5 @@ pkg/pre-install-modules/*
 pkg/post-install-modules/*
 !pkg/post-install-modules/.gitkeep
 
-config
+config/*
+!config/modules/.gitkeep
