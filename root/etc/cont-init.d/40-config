@@ -1,10 +1,22 @@
 #!/usr/bin/with-contenv bash
 # Based on the simple config init script from [duckdns image](https://github.com/linuxserver/docker-duckdns/blob/master/root/etc/cont-init.d/40-config)
 
-chown -R abc:abc \
-	/app \
-	/config
+set +x
 
-chmod a+x /app/MBBSEmu
+app=/app
+config=/config
+mbbsemu="$app"/MBBSEmu
 
-exec s6-setuidgid abc /app/MBBSEmu
+user=abc
+group=$user
+
+chown -R $user:$group \
+	"$app" \
+	"$config"
+
+chmod a+x "$mbbsemu"
+
+exec s6-setuidgid abc \
+	"$mbbsemu" \
+    -S "$config"/appsettings.json \
+	-C "$config"/modules.json
