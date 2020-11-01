@@ -2,11 +2,11 @@
 
 ## Todos
 
-- [] Put all config, database, module files into /config , not read only
+- [x] Put all config, database, module files into /config , not read only
 - [] When MBBSEmu fails to start or crashes, should the container stop? Or have s6 restart it? Or ???? Check other LinuxServer.io projects for reference.
-- [] Figure out if there is a way to map /config, and also have /config/modules be :delegated in docker-compose.yml
+- [x] Figure out if there is a way to map /config, and also have /config/modules be :delegated in docker-compose.yml
 - [] Figure out how to get the VERSION arg passed in / configured in the Dockerfile - maybe download directly from mbbsemu?
-- [] Go through files changed on the linuxserver.io branch; remove commented out reference code from the old implementation
+- [x] Go through files changed on the linuxserver.io branch; remove commented out reference code from the old implementation
 - [] Update this README to account for linuxserver changeover
 
 ## Motivation
