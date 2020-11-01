@@ -1,4 +1,5 @@
 # Based on the LinuxServer.io DuckDNS image https://github.com/linuxserver/docker-duckdns
+# and other images, like the Unifi controller https://github.com/linuxserver/docker-unifi-controller/blob/master/Dockerfile
 
 # Using Ubuntu instead of Alpine, since MBBSEmu is not Alpine compatible.
 FROM lsiobase/ubuntu:bionic
