@@ -8,10 +8,14 @@ ARG VERSION
 LABEL build_version="MBBSEmu version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="fletcherm"
 
-ENV CONFIG_PATH=/config
-ENV EMULATOR_PATH=/app
+# Gets rid of an obnoxious, red, scary looking non-error during build.
+# https://askubuntu.com/questions/344962/how-do-i-correct-this-error-with-debootstrap-in-ubuntu-server-12-04-3
+ARG DEBIAN_FRONTEND=noninteractive
 
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+
+ENV CONFIG_PATH=/config
+ENV EMULATOR_PATH=/app
 
 RUN \
  apt-get update && \
