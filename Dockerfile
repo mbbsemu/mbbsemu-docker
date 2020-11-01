@@ -24,12 +24,3 @@ COPY pkg/mbbsemu-linux-x64-*/MBBSEmu ${EMULATOR_PATH}
 EXPOSE 2323
 VOLUME ${CONFIG_PATH}
 WORKDIR ${EMULATOR_PATH}
-
-# ENV CONFIG_PATH /config
-# ENV DATA_PATH /data
-# ENV EMULATOR_PATH /mbbsemu
-# ENV MODULES_PATH /modules
-
-# COPY run.sh ${EMULATOR_PATH}
-
-# ENTRYPOINT [ "./run.sh" ]
