@@ -24,7 +24,7 @@ RUN \
 	libicu60
 
 COPY root/ /
-COPY pkg/mbbsemu-linux-x64-*/MBBSEmu ${EMULATOR_PATH}
+COPY pkg/mbbsemu-linux-x64-${VERSION}/MBBSEmu ${EMULATOR_PATH}
 
 VOLUME ${CONFIG_PATH}
 WORKDIR ${CONFIG_PATH}
