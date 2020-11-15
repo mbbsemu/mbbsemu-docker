@@ -1,5 +1,28 @@
 # MBBSEmu Docker image
 
+## Big thanks!
+
+This image is based on the fantastic base image built & maintained by [LinuxServer.io](https://www.linuxserver.io). LinuxServer.io distributes dozens of software packages following repeatable patterns. Thank you so much LinuxServer.io for making a base image available that anybody, including our project, can use.
+
+## Supported platforms
+
+macOS and Linux work well. Development of this image is done on my macOS laptop. I run MBBSEmu on a Linux server.
+
+Windows should work in principle but I have not personally tried it. I also include a `build.sh` helper script to build the image. It's a bourne shell script, so it certainly won't work out of the box on Windows. But it woudldn't be too hard to do its work manually.
+
+## Prerequisites
+
+* Docker
+  * I've personally run on Docker desktop 2.5.0.0 on macOS and 19.03.13 on Linux.
+  * The image probably works on older versions, but I can't tell you how far back.
+* An unzipped MBBSEmu package
+  * Grab your preferred build from [the MBBSEmu website](https://www.mbbsemu.com).
+  * Since development is so rapid right now, I generally use the latest build from the master branch.
+* Unzipped MajorBBS modules
+  * MBBSEmu-ready modules can be found on [the MBBSEmu website Modules section](https://www.mbbsemu.com/Modules).
+
+## Quick start
+
 ## Todos
 
 - [x] Put all config, database, module files into /config , not read only
