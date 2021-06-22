@@ -26,7 +26,7 @@ Windows should work in principle but I have not personally tried it. I also incl
 Broadly speaking we will be going three steps to build, setup, and run this image.
 
 1. Build the image from source.
-2. Prepare the runtime and configuration directory
+2. Prepare the runtime and configuration directory.
 3. Create a `docker-compose.yml` file and run a container.
 
 ### Build the image
