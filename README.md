@@ -91,9 +91,36 @@ Note the leading slash in the paths -- this is because, inside of the container,
 
 #### Emulator settings and database
 
-Next we need to create the `mbbsemu.db` file. This is the main database for MBBSEmu (duh); it includes the Sysop account password.
+##### Database
 
-TODO: FILL IN INSTRUCTIONS ABOUT GENERATING THIS FILE WITH THE CONTAINER
+Next we need to create the `mbbsemu.db` file. This is the main database for MBBSEmu (duh)
+
+Setting up the database will also set the Sysop account password.
+
+To do this, we'll use `docker run` to run the MBBSEmu command to set the Sysop password.
+
+Here is an example of what that looks like:
+
+```sh
+docker run \
+  -e "PUID=1000" \
+  -e "PGID=999" \
+  -e "TZ=America/Detroit" \
+  -v $PWD/config:/config -it \
+  --entrypoint /app/MBBSEmu mbbsemu -DBRESET <FILL IN PASSWORD HERE>
+```
+
+The first two environment variables set the user and group ids you want this to run as. This is following LinuxServer.io's pattern. Set these values to the same user and group ids as the user you want to run this as.
+
+The third environment variable sets the timezone.
+
+The first volume maps the `/config` directory in the container to the local `./config` directory relative to this script. You need to include this kind of bind volume so that the new database file is persisted.
+
+Finally, the `--entrypoint` and remaining syntax runs the emulator with the `-DBRESET` parameter.
+
+Fill you preferred sysop password in at the end.
+
+##### Settings
 
 Lastly we need to prep the `config/appsettings.json` file. The MBBSEmu zip package from the website should come with a sample file. Copy it in here.
 
@@ -131,16 +158,18 @@ services:
 
 Follow the comments above on which values need to be filled in where.
 
+The `PUID` and `PGID` will likely match the values you used while creating the database and setting the sysop password.
+
 At last we can run a conatiner. `docker-compose up`
 
 Note the output from running the container. The majority of it is the LinuxServer.io base setting up the environment and running our command.
 
 ## Todos
 
-* [] Finish authoring te section about creating the database file.
 * [] When MBBSEmu fails to start or crashes, should the container stop? Or have s6 restart it? Or ???? Check other LinuxServer.io projects for reference.
-* [] Test whether the :delegated flag on the modules volume mapping makes a difference on a linux host.
 * [] Build and push images to Github container registry - avoids people needing to build this themselves.
+* [x] Test whether the :delegated flag on the modules volume mapping makes a difference on a linux host.
+* [x] Finish authoring te section about creating the database file.
 * [x] Put all config, database, module files into /config , not read only
 * [x] Figure out if there is a way to map /config, and also have /config/modules be :delegated in docker-compose.yml
 * [x] Figure out how to get the VERSION arg passed in / configured in the Dockerfile - maybe download directly from mbbsemu?
