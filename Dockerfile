@@ -27,5 +27,7 @@ RUN \
 COPY root/ /
 COPY pkg/mbbsemu-linux-x64-${VERSION}/MBBSEmu ${EMULATOR_PATH}
 
+RUN chmod a+x ${EMULATOR_PATH}/MBBSEmu
+
 VOLUME ${CONFIG_PATH}
 WORKDIR ${CONFIG_PATH}
