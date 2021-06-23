@@ -17,7 +17,7 @@ Windows should work in principle but I have not personally tried it. I also incl
   * The image probably works on older versions, but I can't tell you how far back.
 * An unzipped MBBSEmu package
   * Grab your preferred build from [the MBBSEmu website](https://www.mbbsemu.com).
-  * Since development is so rapid right now, I generally use the latest build from the master branch.
+  * Since development is so rapid right now, I generally use [the latest build from the master branch](https://www.mbbsemu.com/Downloads).
 * Unzipped MajorBBS modules
   * MBBSEmu-ready modules can be found on [the MBBSEmu website Modules section](https://www.mbbsemu.com/Modules).
 
@@ -26,7 +26,7 @@ Windows should work in principle but I have not personally tried it. I also incl
 Broadly speaking we will be going three steps to build, setup, and run this image.
 
 1. Build the image from source.
-2. Prepare the runtime and configuration directory
+2. Prepare the runtime and configuration directory.
 3. Create a `docker-compose.yml` file and run a container.
 
 ### Build the image
@@ -140,6 +140,7 @@ Note the output from running the container. The majority of it is the LinuxServe
 * [] Finish authoring te section about creating the database file.
 * [] When MBBSEmu fails to start or crashes, should the container stop? Or have s6 restart it? Or ???? Check other LinuxServer.io projects for reference.
 * [] Test whether the :delegated flag on the modules volume mapping makes a difference on a linux host.
+* [] Build and push images to Github container registry - avoids people needing to build this themselves.
 * [x] Put all config, database, module files into /config , not read only
 * [x] Figure out if there is a way to map /config, and also have /config/modules be :delegated in docker-compose.yml
 * [x] Figure out how to get the VERSION arg passed in / configured in the Dockerfile - maybe download directly from mbbsemu?
