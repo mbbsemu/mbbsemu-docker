@@ -106,7 +106,7 @@ docker run \
   -e "PUID=1000" \
   -e "PGID=999" \
   -e "TZ=America/Detroit" \
-  -v $PWD/config:/config -it \
+  -v /host/path/to/config:/config -it \
   --entrypoint /app/MBBSEmu mbbsemu -DBRESET <FILL IN PASSWORD HERE>
 ```
 
@@ -114,7 +114,7 @@ The first two environment variables set the user and group ids you want this to 
 
 The third environment variable sets the timezone.
 
-The first volume maps the `/config` directory in the container to the local `./config` directory relative to this script. You need to include this kind of bind volume so that the new database file is persisted.
+The `-v` volume mapping the `/config` directory in the container to the local `./config` directory relative to this script. The left side of the colon should be the config path on your host system.  You need to include this kind of bind volume so that the new database file is persisted.
 
 Finally, the `--entrypoint` and remaining syntax runs the emulator with the `-DBRESET` parameter.
 
@@ -153,7 +153,7 @@ services:
       - "2323:23" # set your preferred port mapping for telnet. The syntax is host:container port numbers.
     volumes:
       - ./config:/config
-      - ./config/modules:/config/modules:delegated # Some modules have a lot of disk reads and writes. the :delegated flag resulted in much better performance for me
+      - ./config/modules:/config/modules:delegated # Some modules have a lot of disk reads and writes. the :delegated flag improves performance on macOS host systems. It's not needed on a Linux host.
 ```
 
 Follow the comments above on which values need to be filled in where.
@@ -166,8 +166,8 @@ Note the output from running the container. The majority of it is the LinuxServe
 
 ## Todos
 
-* [] When MBBSEmu fails to start or crashes, should the container stop? Or have s6 restart it? Or ???? Check other LinuxServer.io projects for reference.
 * [] Build and push images to Github container registry - avoids people needing to build this themselves.
+* [] When MBBSEmu fails to start or crashes, should the container stop? Or have s6 restart it? Or ???? Check other LinuxServer.io projects for reference.
 * [x] Test whether the :delegated flag on the modules volume mapping makes a difference on a linux host.
 * [x] Finish authoring te section about creating the database file.
 * [x] Put all config, database, module files into /config , not read only
@@ -180,3 +180,4 @@ Note the output from running the container. The majority of it is the LinuxServe
 * [x] Do MBBS modules that save data dump all their data files in the same directory as the bbs exectuables themselves? I believe so. Test if there is a way to dump the static bbs files during build time, but volume map the data files at runtime into the same directory. Need one or two modules to test this with first.
 * [x] Identify a slimmer base image to build from. (I chose this one because I know the app is being developed on .net, but I suspect something smaller can be used for runtime only)
 * [x] See if a generic `docker-compose.yml` can be created to ease running this beast.
+
