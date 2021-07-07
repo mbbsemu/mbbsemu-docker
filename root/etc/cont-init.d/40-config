@@ -15,4 +15,5 @@ chmod a+x "$mbbsemu"
 exec s6-setuidgid abc \
     "$mbbsemu" \
     -S "$CONFIG_PATH"/appsettings.json \
-	-C "$CONFIG_PATH"/modules.json
+    -C "$CONFIG_PATH"/modules.json
+
