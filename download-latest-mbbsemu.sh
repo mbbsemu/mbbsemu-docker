@@ -1,7 +1,6 @@
 #!/bin/bash
 
 set -x
-set -e
 
 mkdir -p pkg/archive/mbbsemu
 mv pkg/mbbsemu-* pkg/archive/mbbsemu
