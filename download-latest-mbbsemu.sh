@@ -2,6 +2,11 @@
 
 set -x
 
+if [ $# -eq 0 ]; then
+ echo 'Must pass in the name of the download URL. Download URLs are listed at `https://www.mbbsemu.com/Downloads/master`.'
+ exit 1
+fi
+
 mkdir -p pkg/archive/mbbsemu
 mv pkg/mbbsemu-* pkg/archive/mbbsemu
 
