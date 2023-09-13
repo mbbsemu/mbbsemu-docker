@@ -25,7 +25,12 @@ fi
 
 echo "Archiving old mbbsemu builds."
 mkdir -p "$ARCHIVE_DIR"
-mv "$PKG_DIR"/mbbsemu-*/* "$ARCHIVE_DIR"/ 2>/dev/null
+# Check if the "$PKG_DIR"/mbbsemu-* directory exists before moving
+if [ -d "$PKG_DIR"/mbbsemu-* ]; then
+    mv "$PKG_DIR"/mbbsemu-* "$ARCHIVE_DIR"
+else
+    echo "No old builds found to archive."
+fi
 
 echo "Downloading the artifact matching pattern $PATTERN for run ID $RUN_ID."
 gh run download --repo "$REPO" "$RUN_ID" -p "$PATTERN" -D $PKG_DIR
