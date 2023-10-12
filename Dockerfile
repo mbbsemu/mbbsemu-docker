@@ -1,6 +1,6 @@
 # Based on the LinuxServer.io DuckDNS image https://github.com/linuxserver/docker-duckdns
 # and other images, like the Unifi controller https://github.com/linuxserver/docker-unifi-controller/blob/master/Dockerfile
-FROM lsiobase/ubuntu:jammy-a9a08161-ls80
+FROM lsiobase/ubuntu:jammy-a9a08161-ls81
 
 ARG BUILD_DATE
 ARG VERSION
