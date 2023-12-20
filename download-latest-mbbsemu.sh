@@ -33,9 +33,8 @@ for dir in "$PKG_DIR"/mbbsemu-*; do
 done
 
 echo "Downloading the artifact matching pattern $PATTERN for run ID $RUN_ID."
-gh run download --repo "$REPO" "$RUN_ID" -p "$PATTERN" -D $PKG_DIR
-
-if [ $? -ne 0 ]; then
+if ! gh run download --repo "$REPO" "$RUN_ID" -p "$PATTERN" -D $PKG_DIR;
+then
   echo "Error: Failed to download the artifact."
   exit 3
 fi
