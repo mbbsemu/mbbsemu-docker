@@ -9,5 +9,5 @@ version=$(printf %s "$version")
 docker build \
   --build-arg BUILD_DATE="$build_date" \
   --build-arg VERSION="$version" \
-  -t mbbsemu .
+  -t mbbsemu:"$version" .
 
